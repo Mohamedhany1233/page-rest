@@ -44,6 +44,16 @@ nav{
 
 }
 
+@media (max-width:780px)
+{
+    nav{
+        
+        background-color: #5d4e44;
+        position: sticky !important;
+        top: 0;
+    }
+}
+
 .Product-Card {
     position: relative; 
     width: 500px !important;

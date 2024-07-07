@@ -4,10 +4,11 @@
 }
 
 nav{
-    position: fixed;
+    position: fixed !important;
     width: 100%;
     background-color:rgba(0, 0, 0, 0.37);
-    z-index: 100;
+    z-index: 1000;
+
 }
 
 
@@ -42,6 +43,7 @@ nav{
 }
 .carousel-item {
     width: 100%;
+    position: relative;
 }
 
 .carousel-item img {
@@ -64,6 +66,16 @@ nav{
 }
 @media (max-width:780px)
 {
+    nav{
+        
+        background-color: #5d4e44;
+        position: sticky !important;
+        top: 0;
+        left: 0;
+    }
+}
+@media (max-width:780px)
+{
     .carousel-caption h5{
         font-size: 20px;
         
@@ -82,7 +94,14 @@ nav{
 #menu{
     margin-top: 100px;
     background-color:#e4e4e4;
-    height: 1000px;
+    
+}
+@media (max-width:780px)
+{
+    #menu {
+        height:  7900px;
+        
+    }
 }
 .menuSection{
     
@@ -93,7 +112,6 @@ nav{
 }
 .menuSection h2{
     margin-top: 30px;
-    text-decoration: underline;
     font-family:'Times New Roman', Times, serif;
     font-size: 50px;
    
@@ -206,4 +224,25 @@ footer {
 .social-icon:hover {
     background-color:white;
     transform: scale(1.1);
+}
+#content-cards{
+    background-color:rgba(0, 0, 0, 0.515);
+    height: 400px;
+    position: fixed !important;
+    width: 300px;
+    top: 90px;
+    right: 0;
+    z-index: 10000;
+    overflow-y:auto ;
+    
+}
+#content-cards h2{
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    font-size: 30px;
+    color: white;
+}
+.decreament{
+    line-height:18px;
+    display: block;
 }
