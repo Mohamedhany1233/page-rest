@@ -30,7 +30,6 @@ function createcard(cards) {
             count.innerHTML= countValue
             localStorage.setItem('count' , countValue)
             AddToCart(item) 
-           
         }
         button.classList.add('btn');
         button.classList.add('btn-primary');
@@ -63,6 +62,7 @@ function AddToCart(item) {
         let ContentCart = document.getElementById('content-cards')
         ContentCart.appendChild(createCartItem(item))
     }
+
     localStorage.setItem('cards', JSON.stringify(cards));
 }
 
@@ -301,28 +301,103 @@ function createCartItem(item) {
     let divItems = document.createElement('div');
     divItems.classList.add('gap-3', 'align-items-center');
     divItems.style.zIndex = '0';
-
+    //image code
     let image = document.createElement('img');
     image.style.width = '100%';
     image.style.height = '250px';
     image.src = item.photo;
     divItems.appendChild(image);
-
+    //heading code
     let headingCart = document.createElement('h2');
     headingCart.style.textAlign = 'center';
     headingCart.innerHTML = item.head;
     divItems.appendChild(headingCart);
-
+    //amount code
     let amount = document.createElement('p');
-    amount.innerHTML = item.amount;
+    amount.innerHTML = 'Amount :' + item.amount;
+    amount.style='font-size:20px; color:white; margin-left:4px;'
     divItems.appendChild(amount);
-
+    
     let divIcons = document.createElement('div');
     divIcons.classList.add('d-flex', 'gap-3', 'align-items-center');
     divItems.appendChild(divIcons);
-
-    return divItems;
+    //increament code
+    let increament = document.createElement('span')
+    increament.classList.add('count-icon' , 'increament')
+    increament.innerHTML = 'More'   
+    divIcons.appendChild(increament)
+    console.log(increament);
+    
+    //increament + 1
+    increament.onclick = function(){
+        countValue = countValue + 1;
+        count.innerHTML= countValue
+        localStorage.setItem('count' , countValue)
+    //amount
+    let cards = JSON.parse(localStorage.getItem('cards')) || [];
+    let filter = cards.filter(function(element , index){
+        if (item.id == element.id)
+        {
+            cards[index].amount+=1 
+            return element
+        }
+    })
+    if (filter.length <=0)
+    {
+        item.amount = 1
+        cards.push(item);
+        let ContentCart = document.getElementById('content-cards')
+        ContentCart.appendChild(createCartItem(item))
+    }
+    localStorage.setItem('cards', JSON.stringify(cards));
 }
+
+
+    //faslah code
+    let faslah = document.createElement("span")
+    faslah.innerHTML='ـــــــــــ'
+    faslah.style='font-size:20px; color:white; margin-left:20px;'
+    divIcons.appendChild(faslah)
+    //decreament code
+    let decreament = document.createElement('span')
+    decreament.classList.add('count-icon' , 'decreament')
+    decreament.innerHTML = 'Less'
+    divIcons.appendChild(decreament)
+    console.log(divItems);
+    //decreament - 1
+    decreament.onclick = function(){
+        
+        countValue = countValue - 1;
+        count.innerHTML= countValue
+        localStorage.setItem('count' , countValue)
+        //amount
+        let cards = JSON.parse(localStorage.getItem('cards')) || [];
+        let filter = cards.filter(function(element , index){
+            if (item.id == element.id)
+            {
+                cards[index].amount-=1 
+                return element
+            }
+        })
+        if (filter.length <=0)
+        {
+            item.amount = 1
+            cards.push(item);
+            let ContentCart = document.getElementById('content-cards')
+            ContentCart.appendChild(createCartItem(item))
+        }
+        localStorage.setItem('cards', JSON.stringify(cards));
+    }
+    //hr code
+    let hr = document.createElement('hr')
+    divItems.appendChild(hr)
+    hr.style=' border: solid 3px white;'
+    console.log(hr);
+    return divItems;
+
+}
+
+
 
 let cardnav = document.getElementById('cardnav');
 
@@ -340,6 +415,7 @@ document.addEventListener('click', function(event) {
         ContentCart.style.display = 'none';  // Hide the content if click outside ContentCart and not on cardnav
     }
 });
+
 
 
 
