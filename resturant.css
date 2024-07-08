@@ -242,7 +242,43 @@ footer {
     font-size: 30px;
     color: white;
 }
+
+.count-icon{
+    
+    font-size: 50px;
+    margin-left: 0px;
+    color: black;
+    border: solid 1px ;
+    font-style: italic;
+    font-weight: 400;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    gap: 2rem;
+}
 .decreament{
-    line-height:18px;
-    display: block;
+    margin-left: 20px;
+    font-size: 25px;
+    line-height: 20px;
+    padding: 10px;
+    background-color:whitesmoke;
+    margin-right: 30px;
+    transition: all 0.5s ease;
+  
+}
+.decreament:hover{
+
+    background-color: black;
+    color: white;
+}
+.increament{
+    margin-left: 10px;
+    font-size: 25px;
+    line-height: 20px;
+    padding: 10px;
+    background-color: whitesmoke;
+    transition: all 0.5s ease;
+}
+.increament:hover{
+
+    background-color: black;
+    color: white;
 }
