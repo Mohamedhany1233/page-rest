@@ -291,8 +291,9 @@ let ContentCart = document.getElementById('content-cards')
 ContentCart.style='display:none;'
 let cardsItem = JSON.parse(localStorage.getItem('cards')) || []
 
+
 cardsItem.forEach(function(item){
-  let element =    createCartItem(item)
+    let element =    createCartItem(item)
     ContentCart.appendChild(element)
 })
 
@@ -301,6 +302,7 @@ function createCartItem(item) {
     let divItems = document.createElement('div');
     divItems.classList.add('gap-3', 'align-items-center');
     divItems.style.zIndex = '0';
+
     //image code
     let image = document.createElement('img');
     image.style.width = '100%';
@@ -343,16 +345,16 @@ function createCartItem(item) {
         }
     })
     if (filter.length <=0)
-    {
-        item.amount = 1
-        cards.push(item);
-        let ContentCart = document.getElementById('content-cards')
-        ContentCart.appendChild(createCartItem(item))
+        {
+            item.amount = 1
+            cards.push(item);
+            let ContentCart = document.getElementById('content-cards')
+            ContentCart.appendChild(createCartItem(item))
+        }
+        localStorage.setItem('cards', JSON.stringify(cards));
     }
-    localStorage.setItem('cards', JSON.stringify(cards));
-}
-
-
+    
+    
     //faslah code
     let faslah = document.createElement("span")
     faslah.innerHTML='ـــــــــــ'
@@ -374,27 +376,32 @@ function createCartItem(item) {
         let cards = JSON.parse(localStorage.getItem('cards')) || [];
         let filter = cards.filter(function(element , index){
             if (item.id == element.id)
-            {
-                cards[index].amount-=1 
-                return element
+                {
+                    cards[index].amount-=1 
+                    if (cards[index].amount === 0 )
+                        {
+                            divItems.remove()
+                            cards.splice(index , 1)
+                        }
+                        return element
+                }
+            })
+            if (filter.length <=0)
+                {
+                    item.amount = 1
+                    cards.push(item);
+                    let ContentCart = document.getElementById('content-cards')
+                    ContentCart.appendChild(createCartItem(item))
+                }
+                localStorage.setItem('cards', JSON.stringify(cards));
             }
-        })
-        if (filter.length <=0)
-        {
-            item.amount = 1
-            cards.push(item);
-            let ContentCart = document.getElementById('content-cards')
-            ContentCart.appendChild(createCartItem(item))
-        }
-        localStorage.setItem('cards', JSON.stringify(cards));
-    }
-    //hr code
+            //hr code
     let hr = document.createElement('hr')
     divItems.appendChild(hr)
     hr.style=' border: solid 3px white;'
     console.log(hr);
     return divItems;
-
+    
 }
 
 
@@ -415,6 +422,8 @@ document.addEventListener('click', function(event) {
         ContentCart.style.display = 'none';  // Hide the content if click outside ContentCart and not on cardnav
     }
 });
+
+
 
 
 
